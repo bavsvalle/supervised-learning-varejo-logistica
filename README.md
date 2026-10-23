@@ -7,13 +7,13 @@
 
 ## 🎯 Sobre o projeto
 
-**O problema.** Fintechs que emprestam para pequenos varejistas muitas vezes não têm balanço para analisar. Quem aprova o crédito precisa de algum sinal de risco que exista antes de a empresa ter histórico próprio.
+**O problema:** Fintechs que emprestam para pequenos varejistas muitas vezes não têm balanço para analisar. Quem aprova o crédito precisa de algum sinal de risco que exista antes de a empresa ter histórico próprio.
 
-**O que o projeto entrega.** Um modelo de regressão logística que estima, usando só dados cadastrais públicos da Receita Federal, a probabilidade de um estabelecimento varejista ser baixado por encerramento (liquidação, falência ou extinção). A ideia é usar essa probabilidade como mais um sinal de risco, ao lado das informações que a fintech já tem, e não como substituto da análise de crédito.
+**O que o projeto entrega:** Um modelo de regressão logística que estima, usando só dados cadastrais públicos da Receita Federal, a probabilidade de um estabelecimento varejista ser baixado por encerramento (liquidação, falência ou extinção). A ideia é usar essa probabilidade como mais um sinal de risco, ao lado das informações que a fintech já tem, e não como substituto da análise de crédito.
 
-**Quem usaria.** Uma área de crédito ou de risco de uma fintech que atende pequenos varejistas. O projeto usa dados públicos e não tem cliente real, então esse uso é um cenário, não um caso aplicado.
+**Quem usaria:** Uma área de crédito ou de risco de uma fintech que atende pequenos varejistas. O projeto usa dados públicos e não tem cliente real, então esse uso é um cenário, não um caso aplicado.
 
-**O resultado.** Em uma amostra de teste separada, o modelo tem AUC de 0,65 (validação cruzada: 0,649, desvio de 0,005), ou seja, discrimina de forma moderada. Com corte de 0,62, ele identifica cerca de 66% dos estabelecimentos que foram baixados, ao custo de apontar como risco cerca de 44% dos que seguem ativos. Ser filial (em vez de matriz) e ter menor capital social estão associados a maior risco de encerramento, mas o efeito de filial é menos firme do que parece (veja [Limitações](#️-limitações)).
+**O resultado:** Em uma amostra de teste separada, o modelo tem AUC de 0,65 (validação cruzada: 0,649, desvio de 0,005), ou seja, discrimina de forma moderada. Com corte de 0,62, ele identifica cerca de 66% dos estabelecimentos que foram baixados, ao custo de apontar como risco cerca de 44% dos que seguem ativos. Ser filial (em vez de matriz) e ter menor capital social estão associados a maior risco de encerramento, mas o efeito de filial é menos firme do que parece (veja [Limitações](#️-limitações)).
 
 **Ressalvas importantes:** baixa não é o mesmo que inadimplência, e o modelo usa só dado cadastral, sem histórico financeiro. Por isso ele serve como sinal complementar, não como decisor.
 
