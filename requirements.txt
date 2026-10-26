@@ -8,3 +8,4 @@ scipy==1.15.3
 statsmodels==0.14.6
 statstests==1.0.9
 ipykernel
+notebook==7.6.3
