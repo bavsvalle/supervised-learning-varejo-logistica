@@ -1,8 +1,8 @@
 # data/ — pipeline de dados do modelo de risco de baixada (varejo)
 
 Guarda as saídas intermediárias e finais do pipeline, da coorte consolidada de varejo até
-os artefatos do modelo treinado. A origem bruta (Receita Federal) e os primeiros
-cruzamentos estão documentados em [`raw/README.md`](raw/README.md).
+os artefatos do modelo treinado. A origem bruta (Receita Federal), a pasta `raw/` (não versionada) e a ordem dos
+scripts estão descritas na seção "Como Rodar" do [README principal](../README.md).
 
 Ordem de geração:
 
@@ -17,8 +17,8 @@ e `dataset_excluidos_ruido.parquet`) → `dataset_modelagem_final.parquet` (note
 - **O que é:** coorte completa de comércio varejista (CNAE `47*`) aberto entre 2017 e
   2019, com todas as situações cadastrais (ativa, baixada, inapta, suspensa, nula).
 - **Origem:** produzido por [`../src/situacao_cadastral.py`](../src/situacao_cadastral.py),
-  que consolida os 10 arquivos parciais de
-  [`raw/estabelecimento/cohort/`](raw/README.md).
+  que consolida os 10 arquivos parciais `raw/cohort_estabelecimentos0..9.parquet`
+  (gerados por [`../src/pipeline_extracao.py`](../src/pipeline_extracao.py)).
 - **Tamanho:** 1.911.883 linhas, 30 colunas.
 - **Consumido por:** [`../src/preparacao_amostra.py`](../src/preparacao_amostra.py),
   [`../src/cruzamento_empresas.py`](../src/cruzamento_empresas.py),
