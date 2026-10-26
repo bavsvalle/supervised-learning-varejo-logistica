@@ -66,7 +66,9 @@ O modelo final ficou com 18 dos 20 termos, todos significativos a 5%. `regiao_No
 
 O AUC no teste (0,6545) ficou praticamente igual ao da amostra de estimação (0,6521), o que indica que o modelo não está inflado por sobreajuste.
 
-![Curva ROC](outputs/curva_roc.png)
+<p align="center">
+  <img src="outputs/curva_roc.png" alt="Curva ROC" width="500">
+</p>
 
 **Principais achados:**
 
@@ -76,7 +78,9 @@ O AUC no teste (0,6545) ficou praticamente igual ao da amostra de estimação (0
 - **Cutoff.** No padrão de 0,5 o modelo classifica baixada demais (especificidade de apenas 0,30). O ponto de equilíbrio entre sensitividade e especificidade fica entre 0,60 e 0,65, e usei 0,62 na validação.
 - **Calibração.** As probabilidades são bem calibradas no centro, mas o último decil superestima o risco (0,755 previsto contra 0,709 observado).
 
-![Sensitividade e especificidade por cutoff](outputs/sensitividade_especificidade_cutoff.png)
+<p align="center">
+  <img src="outputs/sensitividade_especificidade_cutoff.png" alt="Sensitividade e especificidade por cutoff" width="500">
+</p>
 
 ---
 
@@ -84,7 +88,9 @@ O AUC no teste (0,6545) ficou praticamente igual ao da amostra de estimação (0
 
 O bucket INAPTA (12.822 estabelecimentos) mistura empresas em situação cadastral inapta com baixadas por motivos ambíguos (66 e 73). Ficou fora do treino porque não é claramente ativa nem baixada. Para ver se isso mudava alguma coisa, apliquei o modelo final nessas empresas (`.predict()`) e comparei com os grupos reais:
 
-![Boxplot de robustez](outputs/robustez_boxplot_inapta.png)
+<p align="center">
+  <img src="outputs/robustez_boxplot_inapta.png" alt="Boxplot de robustez" width="500">
+</p>
 
 | Grupo | Probabilidade prevista (mediana) |
 |---|---|
