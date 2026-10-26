@@ -152,7 +152,7 @@ Os notebooks devem ser executados em ordem (01 → 07), a partir da pasta `noteb
 <details>
 <summary><b>Ambientes, regeneração dos dados e estrutura do repositório</b></summary>
 
-**Ambientes:** os notebooks 01 a 06 foram executados em Python 3.11 com pandas 3.0.5, numpy 2.4.6, statsmodels 0.14.6 e scikit-learn 1.9.0. O notebook 07 foi executado em um ambiente separado, com as versões do `requirements.txt` (pandas 2.3.3, numpy 2.2.6, statsmodels 0.15.0 e scikit-learn 1.7.2). Ao reproduzir, pequenas diferenças numéricas são possíveis.
+**Ambientes:** os notebooks 01 a 06 foram executados em Python 3.11 com pandas 3.0.5, numpy 2.4.6, statsmodels 0.14.6 e scikit-learn 1.9.0. O notebook 07 foi executado em um ambiente separado, com pandas 2.3.3, numpy 2.2.6, statsmodels 0.15.0 e scikit-learn 1.7.2. O `requirements.txt` fixa o statsmodels em **0.14.6** porque o modelo salvo em `data/modelo_final_logit.pickle` não funciona no 0.15.0 (o notebook 06 usa `summary()` e `predict()` sobre ele). Com o 0.14.6, pandas 2.3.3 e scikit-learn 1.7.2, o resultado do 07 se reproduz (AUC de teste 0,6545 e KS 0,234) e a pontuação do bucket INAPTA do notebook 06 dá a mesma mediana (0,638). Ao reproduzir, pequenas diferenças numéricas são possíveis.
 
 **Dados:** a pasta `data/raw/` (extrações brutas) e o `cohort_varejo_completo.parquet` não estão no repositório. Para regenerá-los, baixe os arquivos da Receita Federal (link na seção "Como foi feito"), coloque-os como abaixo e rode os scripts de `src/` **a partir da raiz do repositório**, nesta ordem:
 

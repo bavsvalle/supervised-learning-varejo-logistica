@@ -5,6 +5,6 @@ pandas==2.3.3
 pyarrow==25.0.1
 scikit-learn==1.7.2
 scipy==1.15.3
-statsmodels==0.15.0
+statsmodels==0.14.6
 statstests==1.0.9
 ipykernel
