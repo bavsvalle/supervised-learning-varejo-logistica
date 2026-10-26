@@ -147,14 +147,26 @@ pip install -r requirements.txt
 jupyter notebook notebooks/01_exploracao_preditores.ipynb
 ```
 
-Os notebooks devem ser executados em ordem (01 → 07), porque cada um usa os arquivos salvos pelo anterior. Os notebooks 02, 03 e 04 leem os dados a partir da raiz do repositório, e os demais a partir da pasta `notebooks/`, então confira o diretório de trabalho de cada um. Os parquets processados em `data/` estão versionados, então os notebooks rodam sem baixar nada.
+Os notebooks devem ser executados em ordem (01 → 07), a partir da pasta `notebooks/`, porque cada um usa os arquivos salvos pelo anterior. Os parquets processados em `data/` estão versionados, então os notebooks rodam sem baixar nada.
 
 <details>
 <summary><b>Ambientes, regeneração dos dados e estrutura do repositório</b></summary>
 
 **Ambientes:** os notebooks 01 a 06 foram executados em Python 3.11 com pandas 3.0.5, numpy 2.4.6, statsmodels 0.14.6 e scikit-learn 1.9.0. O notebook 07 foi executado em um ambiente separado, com as versões do `requirements.txt` (pandas 2.3.3, numpy 2.2.6, statsmodels 0.15.0 e scikit-learn 1.7.2). Ao reproduzir, pequenas diferenças numéricas são possíveis.
 
-**Dados:** a pasta `data/raw/` (extrações brutas) e o `cohort_varejo_completo.parquet` (151 MB) não estão no repositório. Para regenerá-los, baixe os arquivos da Receita Federal (link na seção "Como foi feito") e rode os scripts de `src/` nesta ordem: `situacao_cadastral.py` → `preparacao_amostra.py` → `dataset_modelagem.py` → `redefinir_alvo.py`. Detalhes em `data/README.md`.
+**Dados:** a pasta `data/raw/` (extrações brutas) e o `cohort_varejo_completo.parquet` não estão no repositório. Para regenerá-los, baixe os arquivos da Receita Federal (link na seção "Como foi feito"), coloque-os como abaixo e rode os scripts de `src/` **a partir da raiz do repositório**, nesta ordem:
+
+| Passo | Script | Lê | Gera |
+|---|---|---|---|
+| 1 | `pipeline_extracao.py` | `data/raw/Estabelecimentos0.zip` a `Estabelecimentos9.zip` | `data/raw/cohort_estabelecimentos0..9.parquet` |
+| 2 | `situacao_cadastral.py` | os parquets do passo 1 | `data/cohort_varejo_completo.parquet` |
+| 3 | `preparacao_amostra.py` | a coorte do passo 2 | `data/amostra_varejo_60k.parquet` |
+| 4 | `cruzamento_empresas.py` | a coorte e `data/raw/empresa/*.EMPRECSV` | `data/raw/empresa/cohort_empresas.parquet` |
+| 5 | `cruzamento_simples.py` | a coorte e `data/raw/simples/*SIMPLES*` | `data/raw/simples/cohort_simples.parquet` |
+| 6 | `dataset_modelagem.py` | passos 3, 4 e 5 | `data/dataset_modelagem.parquet` |
+| 7 | `redefinir_alvo.py` | o dataset do passo 6 | `data/dataset_modelagem_baixada.parquet` e os parquets de robustez e ruído |
+
+Os passos 4 e 5 só dependem do passo 2, então podem rodar antes do 3. Detalhes de cada arquivo em `data/README.md`.
 
 **Estrutura:**
 
